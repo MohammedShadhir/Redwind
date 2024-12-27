@@ -1,14 +1,13 @@
+require("dotenv").config();
 const express = require("express");
+const connectDB = require("./config/db");
+
 const app = express();
 
-app.use(express.json());
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+connectDB();
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`)
+);
